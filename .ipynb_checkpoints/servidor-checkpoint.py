@@ -34,7 +34,7 @@ class Servidor():
 		for c in self.clientes:
 			try:
 				if c != cliente:
-					c.send(msg )
+					c.send(msg)
 			except:
 				self.clientes.remove(c)
 

@@ -29,7 +29,12 @@ class Cliente():
 		while True:
 			texto = input('\nEscriba texto ? ** Enviar = ENTER ** Abandonar Chat = Q \n')
 			if texto != 'Q' :
-				self.enviar(nickname +":"+texto)
+				msg = {
+					"nickname": nickname,
+					"text" : texto
+				}
+				msg_str = json.dumps(msg)
+				self.enviar(msg)
 			else:
 				print(" **** TALOGOOO  ****")
 				self.sock.close()

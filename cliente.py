@@ -25,6 +25,7 @@ class Cliente():
 		hilo_recv_mensaje.start()
 		print('Hilo con PID',os.getpid())
 		print('Hilos activos', threading.active_count())
+		self.enviar("nickname:"+str(nickname))
 
 		while True:
 			texto = input('\nEscriba texto ? ** Enviar = ENTER ** Abandonar Chat = Q \n')

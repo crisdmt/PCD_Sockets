@@ -11,6 +11,7 @@ class Servidor():
 		self.sock.bind((str(host), int(port)))
 		self.sock.listen(20)
 		self.sock.setblocking(False)
+		self.usuarios = []
 
 		aceptar = threading.Thread(target=self.aceptarC)
 		procesar = threading.Thread(target=self.procesarC)
@@ -55,8 +56,14 @@ class Servidor():
 				for c in self.clientes:
 					try:
 						data = c.recv(32)
+						print('data',pickle.loads(data))
+						msg = pickle.loads(data);
 						if data:
-							self.broadcast(data,c)
+							if 'nickname:' in msg:
+								self.usuarios.append(msg.replace('nickname:',''))
+								print("Usuarios conectados:",self.usuarios)
+							else:
+								self.broadcast(data,c)
 					except:
 						pass
 
